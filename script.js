@@ -11,7 +11,7 @@ let currentData = {
 // Fetch live sensor data from your backend
 async function fetchRealData() {
     try {
-        const response = await fetch(`${BACKEND_URL}/api/current-data`);
+        const response = await fetch(`${BACKEND_URL}/api/sensor_data`);
         const data = await response.json();
         
         currentData.pH = data.pH;
