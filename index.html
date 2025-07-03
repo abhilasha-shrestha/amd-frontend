@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMD Monitoring Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.json">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>⛏️ AMD Water Quality Dashboard</h1>
+  </header>
+
+  <main>
+    <section class="status">
+      <div><strong>pH:</strong> <span id="phValue">--</span></div>
+      <div><strong>Turbidity:</strong> <span id="turbidityValue">--</span> NTU</div>
+      <div><strong>ORP:</strong> <span id="orpValue">--</span> mV</div>
+      <div><strong>Status:</strong> <span id="qualityStatus">--</span></div>
+    </section>
+
+    <section>
+      <canvas id="realTimeChart"></canvas>
+    </section>
+
+    <section class="actions">
+      <button onclick="exportToCSV()">📤 Export CSV</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AMD Monitoring System</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
