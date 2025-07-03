@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://amd-backend-y7du.onrender.com';
+const BACKEND_URL = 'https://amd-backend-76r6.onrender.com/';
 const UPDATE_INTERVAL = 15000; // 15 seconds
 
 let currentData = {
