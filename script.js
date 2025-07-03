@@ -26,33 +26,25 @@ async function fetchRealData() {
 }
 
 // Call AI prediction endpoint with current sensor data
-async function updateAIPredictions() {
+async function getAIPredictions(sensorData) {
     try {
-        const response = await fetch(`${BACKEND_URL}/api/ai-predictions`, {
+        const response = await fetch(`${API_BASE_URL}/predict`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(currentData),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sensorData)
         });
-
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const predictions = await response.json();
-
-        document.getElementById('maintenance-prediction').innerHTML = `
-            Limestone replacement needed in: <strong>${predictions.maintenance.days_until_replacement} days</strong><br>
-            Confidence: ${predictions.maintenance.confidence}%
-        `;
-
-        document.getElementById('quality-prediction').innerHTML = `
-            Current Status: <strong>${predictions.quality.status}</strong><br>
-            Recommendation: ${predictions.quality.status === 'Safe' ? 'Continue monitoring' : 'Immediate attention required'}
-        `;
-
-        document.getElementById('anomaly-prediction').innerHTML = `
-            System Status: <strong>${predictions.anomaly.status}</strong><br>
-            ${predictions.anomaly.is_anomaly ? 'Unusual readings detected - check sensors' : 'No anomalies detected'}
-        `;
+        return predictions;
     } catch (error) {
-        console.error('❌ Error getting AI predictions:', error);
-        showNotification('❌ Failed to get AI predictions');
+        console.error('AI prediction error:', error);
+        return null;
     }
 }
 
