@@ -1,6 +1,4 @@
-// script.js
-
-const BACKEND_URL = 'https://amd-backend-76r6.onrender.com';  // ✅ Your backend URL
+const BACKEND_URL = 'https://amd-backend-76r6.onrender.com';  // ✅ Backend URL
 
 async function fetchCurrentData() {
   try {
@@ -56,6 +54,12 @@ async function fetchModelsStatus() {
     console.error('❌ Error fetching models status:', error);
     return null;
   }
+}
+
+// Dummy function to prevent missing function error from index.html
+function runAIAnalysis() {
+  console.log('ℹ️ runAIAnalysis called.');
+  // You can optionally call fetchPredictions() here if needed.
 }
 
 // Example Initialization Function
